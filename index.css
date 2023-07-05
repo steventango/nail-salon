@@ -1,0 +1,181 @@
+:root {
+  /* Set Theme Colours */
+  --mdc-theme-primary: #6200ee;
+  --mdc-theme-secondary: #caa5fe;
+}
+
+body,
+html {
+  margin: 0;
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.mdc-top-app-bar,
+main {
+  width: calc(100vw - 240px);
+}
+
+main.fixed-adjust {
+  /* Shifts main element down below the top app bar */
+  margin-top: 64px;
+}
+
+.material-icons {
+  user-select: none;
+}
+
+.mdc-text-field--textarea {
+  width: 100%;
+}
+
+.mdc-text-field--textarea textarea {
+  resize: none;
+}
+
+#fab {
+  /* Position Floating Action Button between the Left Navigational Drawer and content */
+  position: fixed;
+  bottom: 1rem;
+  left: 212px;
+}
+
+.mdc-drawer--permanent .mdc-drawer__content {
+  overflow-y: auto;
+  height: calc(100vh - 64px);
+}
+
+#search_bar {
+  margin: 0;
+}
+
+.mdc-text-field.mdc-text-field--fullwidth .mdc-text-field__input {
+  position: absolute;
+  bottom: 8px;
+  height: auto;
+  line-height: 1.15rem;
+}
+
+#profile_textfields .mdc-text-field .mdc-text-field__input {
+  left: 48px;
+}
+
+#warning_dialog .mdc-dialog__surface {
+  max-width: none;
+  min-width: 0;
+  width: auto;
+}
+
+.mdc-card {
+  transition: opacity 120ms cubic-bezier(0, 0, .2, 1), transform 120ms cubic-bezier(0, 0, .2, 1);
+  transform: translateY(150px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mdc-card.animating {
+  visibility: visible;
+}
+
+.mdc-card.visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mdc-card__header {
+  display: inline-flex;
+  min-height: 48px;
+  padding: 4px 4px 4px 16px;
+}
+
+.mdc-card__header h2 {
+  padding: 12px 12px 12px 0;
+}
+
+.mdc-card__action-icons {
+  flex-grow: 0;
+}
+
+#profile_action_items button {
+  border: 0;
+  background: transparent;
+}
+
+.mdc-card__body {
+  padding: 0 16px;
+}
+
+.mdc-card .mdc-list {
+  padding: 0;
+}
+
+.mddtp-picker__left .mddtp-prev-handle,
+.mddtp-picker__left:disabled .mddtp-prev-handle,
+.mddtp-picker__right .mddtp-next-handle,
+.mddtp-picker__right:disabled .mddtp-next-handle {
+  background: none;
+}
+
+.mddtp-next-handle .material-icons,
+.mddtp-prev-handle .material-icons {
+  margin-top: 12px;
+}
+
+.mdc-card__actions {
+  justify-content: flex-end;
+}
+
+#profile_card,
+#appointments_card {
+  height: calc((100vh - 136px) / 2);
+}
+
+#appointments_card {
+  margin-top: var(--mdc-layout-grid-gutter-desktop, 24px);
+}
+
+#viewer_card {
+  max-height: calc(100vh - 112px);
+}
+
+#viewer_card .mdc-card__body {
+  padding-bottom: 16px;
+}
+
+#profile_details,
+#appointments_list,
+#viewer_card .mdc-card__body {
+  overflow-y: auto;
+}
+
+.mdc-list--dense .mdc-list-item.mdc-list-item--large {
+  height: auto;
+  align-items: start;
+  padding: 16px;
+  pointer-events: none;
+}
+
+.mdc-list-item--large .mdc-list-item__text {
+  display: inline-flex;
+  width: calc(100% - 32px);
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.mdc-list--dense .mdc-list-item__graphic {
+  margin-right: 16px;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-text-field__icon {
+  color: var(--mdc-theme-primary);
+}
+
+.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-text-field__icon {
+  color: #b00020;
+}
+
+.mdc-line-ripple {
+  margin-bottom: -1px;
+}

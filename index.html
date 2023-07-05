@@ -1,0 +1,206 @@
+<!doctype HTML>
+<html lang="en" type="text/html" charset="utf-8">
+
+<head>
+  <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1, maximum-scale=1" />
+  <link rel="icon" href="/nail-salon/icon.png">
+  <title>KnK Nails</title>
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" />
+  <link href="/nail-salon/mdDateTimePicker.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/material-components-web@0.38.2/dist/material-components-web.min.css" rel="stylesheet" />
+  <link href="./index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <!-- Navigational Side Drawer -->
+  <nav class="mdc-drawer mdc-drawer--permanent">
+    <div class="mdc-drawer__toolbar-spacer">
+      <!-- Search Bar Component -->
+      <div id="search_bar" class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense mdc-text-field--with-leading-icon">
+        <i class="material-icons mdc-text-field__icon">search</i>
+        <input type="text" id="search_bar__input" class="mdc-text-field__input">
+        <label for="search_bar__input" class="mdc-floating-label">Search</label>
+        <div class="mdc-notched-outline">
+          <svg>
+            <path class="mdc-notched-outline__path" /></svg>
+        </div>
+        <div class="mdc-notched-outline__idle"></div>
+      </div>
+    </div>
+    <!-- Progress Bar Component -->
+    <div id="progressbar" role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate">
+      <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+    </div>
+    <!-- Search Results List -->
+    <div class="mdc-drawer__content">
+      <ul id="search_results" class="mdc-list"></ul>
+    </div>
+  </nav>
+  <!-- Right Side of Layout -->
+  <div>
+    <!-- Header Bar Component -->
+    <header class="mdc-top-app-bar">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-typography">
+          <!-- Sign Out Button -->
+          <label for="signout">Sign out</label>
+          <button id="signout" class="material-icons mdc-top-app-bar__action-item" aria-label="Sign out" alt="Sign out" data-mdc-auto-init="MDCRipple" data-mdc-ripple-is-unbounded>exit_to_app</button>
+        </section>
+      </div>
+    </header>
+
+    <main class="mdc-layout-grid mdc-layout-grid__inner fixed-adjust">
+      <!-- Left Column -->
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <!-- Customer Profile Card -->
+        <div id="profile_card" class="mdc-card">
+          <header class="mdc-card__header">
+            <h2 class="mdc-dialog__header__title"></h2>
+            <div id="profile_action_items" class="mdc-card__action-icons">
+              <button id="profile_edit" class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Edit" data-mdc-auto-init="MDCRipple" data-mdc-ripple-is-unbounded>edit</button>
+              <button id="profile_delete" class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Delete" data-mdc-auto-init="MDCRipple" data-mdc-ripple-is-unbounded>delete</button>
+            </div>
+          </header>
+          <ul id="profile_details" class="mdc-list mdc-list--dense"></ul>
+        </div>
+        <!-- Customer Appointments Card -->
+        <div id="appointments_card" class="mdc-card">
+          <header class="mdc-card__header">
+            <h2 class="mdc-dialog__header__title">Appointments</h2>
+            <div id="appointments_action_items" class="mdc-card__action-icons">
+              <button id="appointment_add" class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Add" data-mdc-auto-init="MDCRipple" data-mdc-ripple-is-unbounded>add</button>
+            </div>
+          </header>
+          <ul id="appointments_list" class="mdc-list mdc-list--dense"></ul>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <!-- Customer Appointment Information Card -->
+        <div id="viewer_card" class="mdc-card">
+          <header class="mdc-card__header">
+            <h2 class="mdc-dialog__header__title">Appointment Details</h2>
+            <div id="appointments_action_items" class="mdc-card__action-icons">
+              <button id="appointment_edit" class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Edit" data-mdc-auto-init="MDCRipple" data-mdc-ripple-is-unbounded>edit</button>
+              <button id="appointment_delete" class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Delete" data-mdc-auto-init="MDCRipple" data-mdc-ripple-is-unbounded>delete</button>
+            </div>
+          </header>
+          <section class="mdc-card__body">
+            <div id="appointment_comments_display" class="mdc-typography"></div>
+          </section>
+        </div>
+        <!-- Customer Appointment Editor Card -->
+        <div id="editor_card" class="mdc-card">
+          <header class="mdc-card__header">
+            <h2 class="mdc-dialog__header__title"></h2>
+          </header>
+          <section class="mdc-card__body">
+            <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-trailing-icon" data-mdc-auto-init="MDCTextField">
+              <input type="text" id="appointment_date" class="mdc-text-field__input" required>
+              <label class="mdc-floating-label" for="appointment_date">Date</label>
+              <div class="mdc-line-ripple"></div>
+              <label id="appointment_date_picker" for="appointment_date" class="material-icons mdc-text-field__icon" tabindex="0" role="button">date_range</label>
+            </div>
+            <div class="mdc-text-field mdc-text-field--textarea" data-mdc-auto-init="MDCTextField">
+              <textarea id="appointment_comment" class="mdc-text-field__input" rows="8" cols="40"></textarea>
+              <label for="textarea" class="mdc-floating-label">Comments</label>
+            </div>
+          </section>
+          <div class="mdc-card__actions">
+            <div class="mdc-card__action-buttons">
+              <button id="appointment_cancel" class="mdc-button mdc-card__action mdc-card__action--button" data-mdc-auto-init="MDCRipple">Cancel</button>
+              <button id="appointment_save" class="mdc-button mdc-card__action mdc-card__action--button" data-mdc-auto-init="MDCRipple">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Floating Action Button for Adding Customers -->
+  <button title="Add Customer" id="fab" class="mdc-fab" aria-label="Add Customer" data-mdc-auto-init="MDCRipple">
+    <span class="mdc-fab__icon material-icons">person_add</span>
+  </button>
+  <!-- Edit/Add Customer Dialog -->
+  <aside id="profile_dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="my-mdc-dialog-label" aria-describedby="my-mdc-dialog-description">
+    <div class="mdc-dialog__surface">
+      <header class="mdc-dialog__header">
+        <h2 class="mdc-dialog__header__title"></h2>
+      </header>
+      <section class="mdc-dialog__body">
+        <div id="profile_textfields">
+          <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
+            <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">person</i>
+            <input type="text" id="dialog-text-field__name" class="mdc-text-field__input" required>
+            <label class="mdc-floating-label" for="dialog-text-field__name">Name</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+          <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
+            <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">email</i>
+            <input type="email" id="dialog-text-field__email" class="mdc-text-field__input">
+            <label class="mdc-floating-label" for="dialog-text-field__email">Email</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+          <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
+            <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">phone</i>
+            <input type="tel" id="dialog-text-field__phone" pattern="^\+*[\d()x\s-]+" class="mdc-text-field__input">
+            <label class="mdc-floating-label" for="dialog-text-field__phone">Phone</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+          <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
+            <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">location_on</i>
+            <input type="text" id="dialog-text-field__address" class="mdc-text-field__input">
+            <label class="mdc-floating-label" for="dialog-text-field__address">Address</label>
+            <div class="mdc-line-ripple"></div>
+          </div>
+          <div class="mdc-text-field mdc-text-field--textarea" data-mdc-auto-init="MDCTextField">
+            <textarea id="dialog-text-field__history" class="mdc-text-field__input" rows="4" cols="40" maxlength="348"></textarea>
+            <label for="textarea" class="mdc-floating-label">History</label>
+          </div>
+        </div>
+      </section>
+      <footer class="mdc-dialog__footer">
+        <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Cancel</button>
+        <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--save">Save</button>
+      </footer>
+    </div>
+    <div class="mdc-dialog__backdrop"></div>
+  </aside>
+  <!-- Delete Customer Warning Dialog -->
+  <aside id="warning_dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="my-mdc-dialog-label" aria-describedby="my-mdc-dialog-description">
+    <div class="mdc-dialog__surface">
+      <section id="warning-dialog-description" class="mdc-dialog__body">
+        Delete this customer?
+      </section>
+      <footer class="mdc-dialog__footer">
+        <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Cancel</button>
+        <button id="warning-dialog-button" type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept"></button>
+      </footer>
+    </div>
+    <div class="mdc-dialog__backdrop"></div>
+  </aside>
+  <!-- Temporary Notification Component that Inform Users of App Processes -->
+  <div id="snackbar" class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+    <div class="mdc-snackbar__text"></div>
+    <div class="mdc-snackbar__action-wrapper">
+      <button type="button" class="mdc-snackbar__action-button"></button>
+    </div>
+  </div>
+
+  <script defer src="https://unpkg.com/material-components-web@0.38.2/dist/material-components-web.min.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+  <script defer src="/nail-salon/moment.min.js"></script>
+  <script defer src="/nail-salon/mdDateTimePicker.min.js"></script>
+  <script defer src="./appointments.js"></script>
+  <script defer src="./profile.js"></script>
+  <script defer src="./search.js"></script>
+  <script defer src="./warning.js"></script>
+  <script defer src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!doctype HTML>
+<html lang="en" type="text/html" charset="utf-8">
+
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+  <link rel="icon" href="/nail-salon/icon.png">
+  <title>KnK Nails</title>
+  <link media="screen, print" href="https://unpkg.com/@material/button@0.38.1/dist/mdc.button.min.css" rel="stylesheet" />
+  <link media="screen, print" href="https://unpkg.com/@material/ripple@0.38.1/dist/mdc.ripple.min.css" rel="stylesheet" />
+  <link media="screen, print" href="https://unpkg.com/@material/snackbar@0.38.0/dist/mdc.snackbar.min.css" rel="stylesheet" />
+  <link media="screen, print" href="https://unpkg.com/@material/top-app-bar@0.38.1/dist/mdc.top-app-bar.min.css" rel="stylesheet" />
+  <link media="screen, print" type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.3.0/firebaseui.css" />
+  <style>
+    html, body {height: 100%; margin: 0; overflow: hidden;}
+    .mdc-top-app-bar {top: 0}
+    #firebaseui-auth-container {top: 50%; transform: translateY(-50%); position: relative;}
+    .firebaseui-idp-google {background-color: #fff !important;}
+  </style>
+</head>
+
+<body>
+  <!-- Header Bar Component -->
+  <header class="mdc-top-app-bar mdc-elevation--z4">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <span class="mdc-top-app-bar__title">KnK Nails</span>
+      </section>
+      </div>
+  </header>
+  <!-- Firebase UI OAuth Login Component -->
+  <div id="firebaseui-auth-container"></div>
+  <!-- Temporary Notification Component that Inform Users of App Processes -->
+  <div id="snackbar" class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+    <div class="mdc-snackbar__text"></div>
+    <div class="mdc-snackbar__action-wrapper">
+      <button type="button" class="mdc-snackbar__action-button"></button>
+    </div>
+  </div>
+  <script defer src="https://unpkg.com/@material/ripple@0.38.1/dist/mdc.ripple.min.js"></script>
+  <script defer src="https://unpkg.com/@material/snackbar@0.38.0/dist/mdc.snackbar.min.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+  <script defer src="https://cdn.firebase.com/libs/firebaseui/3.3.0/firebaseui.js"></script>
+  <script defer src="./login.js"></script>
+</body>
+
+</html>
